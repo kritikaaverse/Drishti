@@ -1,0 +1,11 @@
+import React from 'react';
+import {ArrowUpRight,ChevronRight,PersonStanding,Car,Bike,TrafficCone,Check,LoaderCircle} from 'lucide-react';
+export function Button({children,icon:Icon,secondary=false,className='',...props}){return <button className={`${secondary?'button secondary':'button'} ${className}`} {...props}>{Icon&&<Icon size={17}/>} {children}</button>}
+export function Badge({children,tone='green'}){return <span className={`badge ${tone}`}><span className="dot"/>{children}</span>}
+export function Panel({title,icon:Icon,action,children,className=''}){return <section className={`panel ${className}`}><div className="panel-heading"><h2>{Icon&&<Icon size={18}/>} {title}</h2>{action}</div>{children}</section>}
+export function StatCard({label,value,detail,icon:Icon,color='blue',trend}){return <div className="stat-card"><div className="stat-top"><span>{label}</span><span className={`icon-tile ${color}`}><Icon size={21}/></span></div><div className="stat-value">{value}{trend&&<span className="trend"><ArrowUpRight size={13}/>{trend}</span>}</div><div className="stat-detail">{detail}</div></div>}
+export const objectIcons={person:PersonStanding,car:Car,bike:Bike,traffic:TrafficCone};
+export function DetectionCard({item}){const Icon=objectIcons[item.icon]||PersonStanding;return <div className="detection"><span className={`object-icon ${item.icon}`}><Icon size={23}/></span><div className="detection-copy"><strong>{item.name}</strong><span>{item.direction} <b>·</b> {item.distance}</span></div><div className="detection-meta"><strong>{item.confidence}%</strong><span>{item.time}</span></div></div>}
+export function Toggle({label,description,checked,onChange}){return <label className="toggle-row"><span><strong>{label}</strong>{description&&<small>{description}</small>}</span><input type="checkbox" role="switch" checked={!!checked} onChange={e=>onChange(e.target.checked)}/><span className="switch" aria-hidden="true"/></label>}
+export function Empty({title='Nothing here yet',description='Your results will appear here.'}){return <div className="empty"><Check size={28}/><h3>{title}</h3><p>{description}</p></div>}
+export function Loading(){return <div className="empty"><LoaderCircle className="spin"/>Connecting to your assistant…</div>}
