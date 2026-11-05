@@ -2,4 +2,4 @@
 
 - Improved project documentation.
 - Added project information.
-- Working on new features.
+- Working on new features
